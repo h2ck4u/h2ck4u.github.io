@@ -5,6 +5,16 @@
     <link>https://h2ck4u.github.io/categories/</link>
     <description>Recent content in Categories on 블로구</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://h2ck4u.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 May 2021 14:27:45 +0900</lastBuildDate><atom:link href="https://h2ck4u.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nextjs</title>
+      <link>https://h2ck4u.github.io/categories/nextjs/</link>
+      <pubDate>Thu, 27 May 2021 14:27:45 +0900</pubDate>
+      
+      <guid>https://h2ck4u.github.io/categories/nextjs/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

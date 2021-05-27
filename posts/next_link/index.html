@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> next/link | Next.js 알아보기 🤔 &middot; 블로구 </title>
+
+
+<link rel="stylesheet" href="https://h2ck4u.github.io/css/slim.css">
+<link rel="stylesheet" href="https://h2ck4u.github.io/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="블로구" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://h2ck4u.github.io/">블로구</a></h1>
+  <p class="site-tagline">치킨을 좋아하는 개발자</p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+
+      <li><a href="https://github.com/h2ck4u">Github</a></li> 
+      <li><a href="https://twitter.com/Your%20Twitter%20ID">Twitter</a></li> 
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="post">
+        <h2 class="post-title"><a href="https://h2ck4u.github.io/posts/next_link/">next/link | Next.js 알아보기 🤔</a></h2>
+        <div class="post-content">
+          <h3 id="nextjs--link는-어떻게-동작할까">Next.js | &lt;Link&gt;는 어떻게 동작할까?</h3>
+<p>nextjs로 서비스를 개발하고 운영중에 있는데, &lt;Link&gt;의 동작에 대해 궁금증이 생기게 되었다.<br>
+👆🏻 nextjs코드를 까보기위한 개수작&hellip;</p>
+<p>&lt;Link&gt; 컴포넌트의 props는 아래와 같다</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">{
+  <span style="color:#a6e22e">href</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">required</span>,
+  <span style="color:#a6e22e">as</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">optional</span>, 
+  <span style="color:#a6e22e">replace</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">optional</span>,
+  <span style="color:#a6e22e">scroll</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">optional</span>,
+  <span style="color:#a6e22e">shallow</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">optional</span>,
+  <span style="color:#a6e22e">passHref</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">optional</span>,
+  <span style="color:#a6e22e">prefetch</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">optional</span>,
+  <span style="color:#a6e22e">locale</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">optional</span>,
+}
+</code></pre></div><p>href값을 제외한 나머지 값들은 모두 옵셔널한 값이고, href는 필수값이다.</p>
+<p>일반적으로 <!-- raw HTML omitted --> 링크를 사용할때 링크를 클릭시 어딘가로 이동을 시키려면 아래와 같은 코드를 사용해왔다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;/somewhere&#39;</span>&gt;<span style="color:#a6e22e">어딘가로</span> <span style="color:#a6e22e">이동</span>&lt;<span style="color:#f92672">a</span>/&gt;
+</code></pre></div><p>nextjs에서 제공하는 next/link 컴포넌트를 이용하면 아래와 같이 작성 할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">&lt;<span style="color:#f92672">Link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;/somewhere&#39;</span>&gt;
+  &lt;<span style="color:#f92672">a</span>&gt;<span style="color:#a6e22e">어딘가로</span> <span style="color:#a6e22e">이동</span>&lt;<span style="color:#f92672">a</span>/&gt;
+&lt;/<span style="color:#f92672">Link</span>&gt;
+</code></pre></div><p>혹은</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">&lt;<span style="color:#f92672">Link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;/somewhere&#39;</span>&gt;<span style="color:#a6e22e">어딘가로</span> <span style="color:#a6e22e">이동</span>&lt;/<span style="color:#f92672">Link</span>&gt;
+</code></pre></div><p><code>어딘가로 이동</code>을 클릭하면 &lsquo;linkClicekd()&lsquo;함수를 호출하게 된다.<br>
+아래 코드를 보면 크게 하는것은 없어보인다.<br>
+클릭시 브라우저의 기본 이벤트를 막고 &lt;Link&gt;컴포넌트의 prop으로 전달된 동작(push | replace)를 수행하게 된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linkClicked</span>(
+  <span style="color:#a6e22e">e</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">MouseEvent</span>,
+  <span style="color:#a6e22e">router</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">NextRouter</span>,
+  <span style="color:#a6e22e">href</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>,
+  <span style="color:#a6e22e">as</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>,
+  <span style="color:#a6e22e">replace</span><span style="color:#f92672">?:</span> <span style="color:#66d9ef">boolean</span>,
+  <span style="color:#a6e22e">shallow</span><span style="color:#f92672">?:</span> <span style="color:#66d9ef">boolean</span>,
+  <span style="color:#a6e22e">scroll</span><span style="color:#f92672">?:</span> <span style="color:#66d9ef">boolean</span>,
+  <span style="color:#a6e22e">locale</span><span style="color:#f92672">?:</span> <span style="color:#a6e22e">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">false</span>
+)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+  <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">nodeName</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">currentTarget</span>
+
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">nodeName</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">isModifiedEvent</span>(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">isLocalURL</span>(<span style="color:#a6e22e">href</span>))) {
+    <span style="color:#75715e">// ignore click for browser’s default behavior
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span>
+  }
+
+  <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">preventDefault</span>()
+
+  <span style="color:#75715e">//  avoid scroll for urls with anchor refs
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">scroll</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+    <span style="color:#a6e22e">scroll</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">as</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#e6db74">&#39;#&#39;</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>
+  }
+
+  <span style="color:#75715e">// replace state instead of push if prop is present
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">router</span>[<span style="color:#a6e22e">replace</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;replace&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;push&#39;</span>](<span style="color:#a6e22e">href</span>, <span style="color:#a6e22e">as</span>, {
+    <span style="color:#a6e22e">shallow</span>,
+    <span style="color:#a6e22e">locale</span>,
+    <span style="color:#a6e22e">scroll</span>,
+  })
+}
+</code></pre></div><p><img src="/images/nextlink.png" alt="index.tsx"><br>
+추가로 &lt;Link&gt;의 자식으로 텍스트만 넣어줘도 렌더링 결과를보면 <code>&lt;a&gt;</code>로 감싸진걸 확인할수 있는데<br>
+<img src="/images/nextlink1.png" alt="index.html"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">// Deprecated. Warning shown by propType check. If the children provided is a string (&lt;Link&gt;example&lt;/Link&gt;) we wrap it in an &lt;a&gt; tag
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">children</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;string&#39;</span>) {
+  <span style="color:#a6e22e">children</span> <span style="color:#f92672">=</span> &lt;<span style="color:#f92672">a</span>&gt;{<span style="color:#a6e22e">children</span>}&lt;/<span style="color:#f92672">a</span>&gt;
+}
+</code></pre></div><p>위 코드를보면 이해가 된다. React prop에 담긴 children이 단순 스트링일 경우 <code>&lt;a&gt;</code>로 감싸게 된다.</p>
+<p>사실 오픈소스코드를 직접 열어본건 처음이라서 무엇을 정리해야할지 모르겠지만,<br>
+평소 궁금하던 내용을 직접 열어보게되니 예상했던 코드와 또 그렇지 않은 코드들을 볼 수 있게되어 새로운 경험을 하게되는것 같다.</p>
+<p><a href="https://github.com/vercel/next.js/blob/canary/packages/next/client/link.tsx">next/link repo</a><br>
+<a href="https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-custom-component-that-wraps-an-a-tag">next/link | Next.js</a></p>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+  
+  <p>Jeungeuny.</p>
+  
+</div>
+
+  </div>
+  <script src="https://h2ck4u.github.io/js/slim.js"></script>
+  
+
+</body>
+
+</html>
